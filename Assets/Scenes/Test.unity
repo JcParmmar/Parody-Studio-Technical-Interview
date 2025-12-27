@@ -1433,6 +1433,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5391256609981406378, guid: 0a07e0852d0a9f2428f1261dde9818bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 515537590}
+    - targetCorrespondingSourceObject: {fileID: 5391256609981406378, guid: 0a07e0852d0a9f2428f1261dde9818bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 515537596}
   m_SourcePrefab: {fileID: 100100000, guid: 0a07e0852d0a9f2428f1261dde9818bd, type: 3}
 --- !u!1 &515537583 stripped
 GameObject:
@@ -1462,6 +1465,22 @@ MonoBehaviour:
   spinValue: 1
   ballSpeed: 25
   spinIntensity: 1
+--- !u!114 &515537596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515537583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c434af095ddb40eca5e83c78b8288262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deliverySpeed: 25
+  swingStrength: 100
+  bounciness: 0.65
+  gripLoss: 0.2
 --- !u!1 &645623263
 GameObject:
   m_ObjectHideFlags: 0

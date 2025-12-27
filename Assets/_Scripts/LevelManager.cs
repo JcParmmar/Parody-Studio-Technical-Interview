@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
 
     private InputSystem _input;
     private SwingBall _swing;
+    private SwingBall2 _swing2;
     private SpinBall _spin;
 
     private void Start()
@@ -46,6 +47,7 @@ public class LevelManager : MonoBehaviour
         _input = InputSystem.Instance;
         
         _swing =ball.GetComponent<SwingBall>();
+        _swing2 =ball.GetComponent<SwingBall2>();
         _spin = ball.GetComponent<SpinBall>();
         
         swingButton.onClick.AddListener(() =>
@@ -100,6 +102,7 @@ public class LevelManager : MonoBehaviour
     {
         ball.transform.position = _isLeftHand ? leftHandStartingPoint.position : rightHandStartingPoint.position;
         _swing.enabled = false;
+        _swing2.enabled = false;
         _spin.enabled = false;
         
         accuracySlider.SetActive(false);
@@ -134,12 +137,14 @@ public class LevelManager : MonoBehaviour
         markerPoint.enabled = false;
         _readyToThrow = false;
         switchHandButton.gameObject.SetActive(false);
+        
+        var startLocation = _isLeftHand ? leftHandStartingPoint : rightHandStartingPoint;
 
         if (_isSpin)
         {
             _spin.enabled = true;
 
-            _spin.startPosition = _isLeftHand ? leftHandStartingPoint : rightHandStartingPoint;
+            _spin.startPosition = startLocation;
             _spin.bouncePosition = markerPoint.transform;
             _spin.targetPosition = stump;
 
@@ -150,16 +155,19 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            _swing.enabled = true;
-
-            _swing.startPosition = _isLeftHand ? leftHandStartingPoint : rightHandStartingPoint;
-            _swing.bouncePosition = markerPoint.transform;
-            _swing.targetPosition = stump;
-
             var t = spinAndSwingAccuracy.StopMoving();
-            _swing.swingIntensity = (1 - math.abs(t)) * effectMutl;
-        
-            _swing.ThrowBall();
+            
+            // _swing.enabled = true;
+            //
+            // _swing.startPosition = startLocation;
+            // _swing.bouncePosition = markerPoint.transform;
+            // // _swing.targetPosition = stump;
+            // _swing.swingIntensity = (1 - math.abs(t)) * effectMutl;
+            //
+            // _swing.ThrowBall();
+
+            _swing2.enabled = true;
+            _swing2.ThrowBall(startLocation, markerPoint.transform,  1 - math.abs(t));
         }
     }
 
